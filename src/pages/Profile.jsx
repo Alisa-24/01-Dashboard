@@ -5,6 +5,7 @@ import XpByProjectList from "../components/graphs/XpByProjectList";
 import AuditRatio from "../components/graphs/AuditRatio";
 import ProjectPassFail from "../components/graphs/ProjectPassFail";
 import PiscineStats from "../components/graphs/PiscineStats";
+import AuditHistory from "../components/graphs/AuditHistory";
 
 function Profile({ user }) {
     const [activeSection, setActiveSection] = useState(() => {
@@ -56,7 +57,8 @@ function Profile({ user }) {
             )}
 
             {activeSection === "audit" && (
-                <section>
+                <section className="space-y-6">
+                    <AuditHistory />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
                         <AuditRatio />
                         <ProjectPassFail />

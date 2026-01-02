@@ -73,3 +73,17 @@ export const PISCINE_STATS_QUERY = `
     }
   }
 `;
+
+export const AUDIT_HISTORY_QUERY = `
+  query AuditHistory {
+    transaction(
+      where: { type: { _in: ["up", "down"] } }
+      order_by: { createdAt: desc }
+    ) {
+      type
+      amount
+      path
+      createdAt
+    }
+  }
+`;
