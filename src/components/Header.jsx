@@ -1,9 +1,12 @@
 import { logout } from "../lib/auth";
+import { useNavigate } from "react-router-dom";
 
 function Header({ user }) {
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     logout();
-    window.location.href = "/login";
+    navigate("/login", { replace: true });
   };
 
   return (

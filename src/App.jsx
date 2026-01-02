@@ -16,8 +16,17 @@ function App() {
       <Route
         path="/"
         element={
-          isAuthenticated() ? <Profile /> : <Navigate to="/login" replace />
+          isAuthenticated() ? (
+            <Profile user={{ login: localStorage.getItem("username") }} />
+          ) : (
+            <Navigate to="/login" replace />
+          )
         }
+      />
+
+      <Route
+        path="*"
+        element={<Navigate to={isAuthenticated() ? "/" : "/login"} replace />}
       />
     </Routes>
   );

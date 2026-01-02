@@ -1,13 +1,15 @@
 import { useState } from "react";
 import Layout from "../components/Layout";
 import EarnedXPChart from "../components/graphs/EarnedXP";
+import XpByProjectList from "../components/graphs/XpByProjectList";
+import AuditRatio from "../components/graphs/AuditRatio";
+import ProjectPassFail from "../components/graphs/ProjectPassFail";
 
 function Profile({ user }) {
     const [activeSection, setActiveSection] = useState("progress");
 
     return (
         <Layout user={user}>
-
             <div className="flex justify-center gap-3 mb-6">
                 <button
                     onClick={() => setActiveSection("progress")}
@@ -39,23 +41,17 @@ function Profile({ user }) {
             </div>
 
             {activeSection === "progress" && (
-                <section>
+                <section className="space-y-6">
                     <EarnedXPChart />
+                    <XpByProjectList />
                 </section>
             )}
 
             {activeSection === "audit" && (
                 <section>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="rounded-lg border border-slate-700/50 bg-slate-900/30 p-5">
-                            <h3 className="text-base font-medium text-slate-300 mb-3">Audit Ratio</h3>
-                            <div className="text-sm text-slate-400">Audit ratio chart will go here</div>
-                        </div>
-
-                        <div className="rounded-lg border border-slate-700/50 bg-slate-900/30 p-5">
-                            <h3 className="text-base font-medium text-slate-300 mb-3">Projects PASS/FAIL Ratio</h3>
-                            <div className="text-sm text-slate-400">Projects ratio chart will go here</div>
-                        </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+                        <AuditRatio />
+                        <ProjectPassFail />
                     </div>
                 </section>
             )}
@@ -86,7 +82,6 @@ function Profile({ user }) {
                     </div>
                 </section>
             )}
-
         </Layout>
     );
 }

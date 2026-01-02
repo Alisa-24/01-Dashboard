@@ -9,3 +9,47 @@ export const XP_OVER_TIME_QUERY = `
     }
   }
 `;
+
+export const XP_BY_PROJECT_QUERY = `
+  query XpByProject {
+    transaction(
+      where: { 
+        type: { _eq: "xp" }
+        object: { type: { _eq: "project" } }
+      }
+    ) {
+      amount
+      createdAt
+      object {
+        name
+        type
+      }
+    }
+  }
+`;
+
+export const AUDIT_RATIO_QUERY = `
+  query AuditRatio {
+    user {
+      auditRatio
+      totalUp
+      totalDown
+    }
+  }
+`;
+
+export const PROJECT_PASS_FAIL_QUERY = `
+  query ProjectPassFail {
+    result(
+      where: {
+        object: { type: { _eq: "project" } }
+      }
+    ) {
+      grade
+      objectId
+      object {
+        name
+      }
+    }
+  }
+`;
