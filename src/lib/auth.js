@@ -25,12 +25,14 @@ export async function Auth(identifier, password) {
     throw new Error("No token received");
   }
 
-
   const cleanToken = token.trim().replace(/^"|"$/g, "");
   localStorage.setItem(TOKEN_KEY, cleanToken);
   const userData = await getUserData(); 
   localStorage.setItem("username", userData.login);
   localStorage.setItem("userId", userData.id);
+
+  // Dispatch auth change event
+  window.dispatchEvent(new Event("authChange"));
 
   return cleanToken;
 }
@@ -64,7 +66,6 @@ async function getUserData() {
   return data.data.user[0];
 }
 
-
 export function getToken() {
   return localStorage.getItem(TOKEN_KEY);
 }
@@ -73,8 +74,9 @@ export function logout() {
   localStorage.removeItem(TOKEN_KEY);
   localStorage.removeItem("username");
   localStorage.removeItem("userId");
+  
+  window.dispatchEvent(new Event("authChange"));
 }
-
 
 export function isAuthenticated() {
   return !!getToken();

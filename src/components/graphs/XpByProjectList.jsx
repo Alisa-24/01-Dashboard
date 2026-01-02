@@ -12,10 +12,6 @@ export default function XpByProjectList() {
         async function load() {
             try {
                 const data = await graphqlRequest(XP_BY_PROJECT_QUERY);
-
-                console.log("RAW GraphQL data:", data);
-                console.log("RAW transactions:", data.transaction);
-
                 setProjects(groupXpByProject(data.transaction || []));
             } catch (e) {
                 setErr(e.message);
@@ -52,7 +48,7 @@ export default function XpByProjectList() {
     return (
         <div className="rounded-lg border border-slate-700/50 bg-slate-900/30 p-5">
             <div className="text-base font-medium text-slate-300 mb-4 text-center">
-                XP Earned by Project
+                XP Earned by Projects
             </div>
 
             <ul className="divide-y divide-slate-700/40 max-h-105 custom-scrollbar overflow-y-auto pr-2">

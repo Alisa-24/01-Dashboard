@@ -53,3 +53,23 @@ export const PROJECT_PASS_FAIL_QUERY = `
     }
   }
 `;
+
+export const PISCINE_STATS_QUERY = `
+  query PiscineStats($piscinePath: String!) {
+    progress(
+      where: {
+        path: { _ilike: $piscinePath }
+        object: { type: { _eq: "exercise" } }
+      }
+      order_by: { createdAt: asc }
+    ) {
+      grade
+      createdAt
+      path
+      object {
+        name
+        type
+      }
+    }
+  }
+`;

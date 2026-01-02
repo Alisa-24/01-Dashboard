@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import EarnedXPChart from "../components/graphs/EarnedXP";
 import XpByProjectList from "../components/graphs/XpByProjectList";
 import AuditRatio from "../components/graphs/AuditRatio";
 import ProjectPassFail from "../components/graphs/ProjectPassFail";
+import PiscineStats from "../components/graphs/PiscineStats";
 
 function Profile({ user }) {
-    const [activeSection, setActiveSection] = useState("progress");
+    const [activeSection, setActiveSection] = useState(() => {
+        return localStorage.getItem("profileSection") || "progress";
+    });
+    useEffect(() => {
+        localStorage.setItem("profileSection", activeSection);
+    }, [activeSection]);
+    
+
 
     return (
         <Layout user={user}>
@@ -58,28 +66,7 @@ function Profile({ user }) {
 
             {activeSection === "piscine" && (
                 <section>
-                    <div className="rounded-lg border border-slate-700/50 bg-slate-900/30 p-5">
-                        <div className="flex justify-center gap-2 mb-4">
-                            <button className="px-3 py-1.5 rounded text-xs font-medium transition-colors bg-slate-700 text-white">
-                                JavaScript
-                            </button>
-                            <button className="px-3 py-1.5 rounded text-xs font-medium transition-colors text-slate-400 hover:text-slate-300">
-                                Go
-                            </button>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <h3 className="text-base font-medium text-slate-300 mb-3">PASS/FAIL Ratio</h3>
-                                <div className="text-sm text-slate-400">Piscine ratio chart will go here</div>
-                            </div>
-
-                            <div>
-                                <h3 className="text-base font-medium text-slate-300 mb-3">Attempts for Each Exercise</h3>
-                                <div className="text-sm text-slate-400">Attempts list will go here</div>
-                            </div>
-                        </div>
-                    </div>
+                    <PiscineStats />
                 </section>
             )}
         </Layout>
