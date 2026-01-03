@@ -180,7 +180,7 @@ export default function EarnedXPChart() {
                     </button>
                     <button
                         onClick={() => setRangeDays(730)}
-                        className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${rangeDays === 547
+                        className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${rangeDays === 730
                             ? "bg-slate-700 text-white"
                             : "text-slate-400 hover:text-slate-300"
                             }`}

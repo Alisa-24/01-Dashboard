@@ -12,7 +12,6 @@ export default function ProjectPassFail() {
     async function load() {
       try {
         const data = await graphqlRequest(PROJECT_PASS_FAIL_QUERY);
-        console.log("Project Pass/Fail data:", data);
         
         const passFailStats = calculatePassFail(data.result || []);
         setStats(passFailStats);
