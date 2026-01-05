@@ -84,6 +84,9 @@ export const AUDIT_HISTORY_QUERY = `
       amount
       path
       createdAt
+      object {
+        name
+      }
     }
   }
 `;

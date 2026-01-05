@@ -14,10 +14,6 @@ function formatDate(date) {
   });
 }
 
-function projectFromPath(path) {
-  return path?.split("/").filter(Boolean).pop() || "unknown";
-}
-
 export default function AuditHistory() {
   const [audits, setAudits] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -57,7 +53,7 @@ export default function AuditHistory() {
             className="flex items-center gap-4 py-3 text-sm"
           >
             <div
-              className={`w-6 text-center font-semibold ${
+              className={`w-6 shrink-0 text-center font-semibold ${
                 a.type === "up"
                   ? "text-sky-400"
                   : "text-red-400"
@@ -67,8 +63,8 @@ export default function AuditHistory() {
             </div>
 
             <div className="flex-1 min-w-0">
-              <div className="text-slate-200 truncate">
-                {projectFromPath(a.path)}
+              <div className="text-slate-200 wrap-break-word">
+                {a.object?.name || a.path?.split("/").filter(Boolean).pop() || "unknown"}
               </div>
               <div className="text-[11px] text-slate-500">
                 {formatDate(new Date(a.createdAt))}
@@ -76,7 +72,7 @@ export default function AuditHistory() {
             </div>
 
             <div
-              className={`text-sm font-medium ${
+              className={`shrink-0 text-sm font-medium ${
                 a.type === "up"
                   ? "text-sky-300"
                   : "text-red-300"

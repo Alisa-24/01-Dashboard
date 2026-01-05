@@ -11,11 +11,17 @@ function Profile({ user }) {
     const [activeSection, setActiveSection] = useState(() => {
         return localStorage.getItem("profileSection") || "progress";
     });
+    
     useEffect(() => {
         localStorage.setItem("profileSection", activeSection);
     }, [activeSection]);
     
-
+    useEffect(() => {
+        if (!user) {
+            localStorage.removeItem("profileSection");
+            setActiveSection("progress");
+        }
+    }, [user]);
 
     return (
         <Layout user={user}>
