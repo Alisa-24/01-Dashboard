@@ -25,6 +25,12 @@ export default function PiscineStats() {
 
             for (const piscinePath of pathPatterns) {
                 const data = await graphqlRequest(PISCINE_STATS_QUERY, { piscinePath });
+                if (!data || !data.progress) {
+                    logout();
+                    setErr("Unauthorized access. Logging out.");
+                    setLoading(false);
+                    return;
+                }
                 if (data.progress && data.progress.length > 0) {
                     allProgress = data.progress;
                     break;

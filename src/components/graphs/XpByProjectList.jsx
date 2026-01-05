@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { XP_BY_PROJECT_QUERY } from "../../lib/queries";
 import { graphqlRequest } from "../../lib/api";
 import { data } from "react-router-dom";
+import { logout } from "../../lib/auth";
 
 export default function XpByProjectList() {
     const [projects, setProjects] = useState([]);
@@ -14,7 +15,9 @@ export default function XpByProjectList() {
                 const data = await graphqlRequest(XP_BY_PROJECT_QUERY);
                 setProjects(groupXpByProject(data.transaction || []));
             } catch (e) {
+                logout();
                 setErr(e.message);
+                setLoading(false);
             } finally {
                 setLoading(false);
             }

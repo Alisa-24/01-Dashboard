@@ -10,14 +10,14 @@ export default function AuditRatio() {
   useEffect(() => {
     async function load() {
       try {
-        const data = await graphqlRequest(AUDIT_RATIO_QUERY);
-        console.log("Audit data:", data);
-        
+        const data = await graphqlRequest(AUDIT_RATIO_QUERY);        
         if (data.user && data.user.length > 0) {
           setAuditData(data.user[0]);
         }
       } catch (e) {
+        logout();
         setErr(e.message);
+        setLoading(false);
       } finally {
         setLoading(false);
       }

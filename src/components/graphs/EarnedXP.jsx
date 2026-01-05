@@ -70,7 +70,9 @@ export default function EarnedXPChart() {
 
                 setTransactions(data?.transaction || []);
             } catch (e) {
+                logout();
                 setErr(e.message || "Failed to load XP data");
+                setLoading(false);
             } finally {
                 setLoading(false);
             }

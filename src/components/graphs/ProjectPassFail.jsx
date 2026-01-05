@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { graphqlRequest } from "../../lib/api";
 import { PROJECT_PASS_FAIL_QUERY } from "../../lib/queries";
+import { logout } from "../../lib/auth";
 
 export default function ProjectPassFail() {
   const [stats, setStats] = useState({ pass: 0, fail: 0, passedProjects: [], failedProjects: [] });
@@ -16,7 +17,9 @@ export default function ProjectPassFail() {
         const passFailStats = calculatePassFail(data.result || []);
         setStats(passFailStats);
       } catch (e) {
+        logout();
         setErr(e.message);
+        setLoading(false);
       } finally {
         setLoading(false);
       }

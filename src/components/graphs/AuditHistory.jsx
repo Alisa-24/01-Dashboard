@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AUDIT_HISTORY_QUERY } from "../../lib/queries";
 import { graphqlRequest } from "../../lib/api";
+import { logout } from "../../lib/auth";
 
 function formatDate(date) {
   return date.toLocaleString("en-US", {
@@ -24,6 +25,11 @@ export default function AuditHistory() {
   useEffect(() => {
     async function load() {
       const data = await graphqlRequest(AUDIT_HISTORY_QUERY);
+      if (!data || !data.transaction) {
+        setLoading(false);
+        logout();
+        return;
+      }
       setAudits(data.transaction || []);
       setLoading(false);
     }
