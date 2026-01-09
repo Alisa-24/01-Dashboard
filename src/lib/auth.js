@@ -74,6 +74,7 @@ export function logout() {
   localStorage.removeItem(TOKEN_KEY);
   localStorage.removeItem("username");
   localStorage.removeItem("userId");
+  localStorage.removeItem("profileSection");
   
   window.dispatchEvent(new Event("authChange"));
 }
