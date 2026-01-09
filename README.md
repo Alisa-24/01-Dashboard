@@ -1,16 +1,22 @@
-# React + Vite
+# Student Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interactive dashboard application designed for visualizing student progress and performance metrics. This project provides comprehensive insights into learning achievements through various data visualizations and statistics.
 
-Currently, two official plugins are available:
+The dashboard integrates with a GraphQL API to fetch and display student data, including XP earnings over time, project completion rates, audit ratios, and piscine statistics. It features secure authentication, allowing students to track their personal progress and analyze their learning journey through intuitive charts and graphs.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Built with modern web technologies including React for the UI, Vite for fast development experience, and Tailwind CSS for responsive styling, this application delivers a smooth and performant user experience across all devices.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Real-time XP tracking and visualization with detailed breakdowns by project
+- Project pass/fail statistics with visual representations
+- Audit history tracking and audit ratio calculations
+- Piscine statistics and performance metrics
+- Secure authentication system with JWT tokens
+- Responsive design optimized for desktop and mobile devices
+- Interactive charts and graphs for data visualization
+- Clean and intuitive user interface
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project uses React with Vite for fast development and HMR, along with ESLint for code quality.

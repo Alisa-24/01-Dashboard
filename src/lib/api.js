@@ -1,5 +1,5 @@
 import { DOMAIN } from "./config";
-import { getToken } from "./auth";
+import { getToken, logout } from "./auth";
 
 export async function graphqlRequest(query, variables = {}) {
   const token = getToken();
@@ -28,6 +28,7 @@ export async function graphqlRequest(query, variables = {}) {
 
   if (json.errors) {
     console.error(json.errors);
+    logout();
     throw new Error(json.errors[0]?.message || "GraphQL error");
   }
 
